@@ -1,0 +1,28 @@
+<form [formGroup]="formPeriodicidade">
+  <label>Nome </label>
+  <input type="text" formControlName="nome" /> <br />
+  <label>Sobrenome </label>
+  <input type="text" formControlName="sobrenome" />
+  <button (click)="addNewContatos()">Novo Contato</button>
+
+  <hr />
+  <div
+    formArrayName="contatos"
+    *ngFor="let contato of contatos.controls; let i = index"
+  >
+    <div [formGroupName]="i">
+      <label>Telefone - {{i}}</label>
+      <input type="text" formControlName="telefone" /> <br />
+      <label>Rede Social - {{i}}</label>
+      <input type="text" formControlName="redeSocial" />
+      <button (click)="removeContact(i)">-</button> <br />
+      <hr />
+    </div>
+  </div>
+</form>
+
+<button (click)="emitForm()">Salvar</button> <br />
+
+<pre>
+  {{valueForm | json}}
+</pre>
